@@ -1,0 +1,32 @@
+<form action="/users/create" method="post">
+    <label for="">first name</label>
+    <input type="text" name="first_name">
+    <br>
+    <label for="">last name</label>
+    <input type="text" name="last_name">
+    <br>
+    <label for="">username</label>
+    <input type="text" name="username">
+    <br>
+    <label for="">email</label>
+    <input type="email" name="email">
+    <br>
+    <label for="">password</label>
+    <input type="password" name="password">
+    <br>
+    <input type="submit" value="Tạo tài khoản">
+
+        {{#each customers}}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    {{!-- <img src="{{images.[0].src}}" class="card-img-top" alt="{{name}}"> --}}
+                    <div class="card-body">
+                        <h5 class="card-title">{{first_name}} {{last_name}}</h5>
+                        <p class="card-text">{{username}}</p>
+                        {{email}}
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+</form>
+

@@ -1,0 +1,20 @@
+<form action="/category/create" method="post">
+<label for="">tên</label>
+<input type="text" name="name">
+<input type="submit" value="Thêm">
+</form>
+
+<br>
+<h2>List all categories</h2>
+{{#each categories}}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    {{!-- <img src="{{images.[0].src}}" class="card-img-top" alt="{{name}}"> --}}
+                    <div class="card-body">
+                        <h5 class="card-title">name: {{name}}</h5>
+                        <p class="card-text">count: {{count}}</p>
+                        {{{description}}}
+                    </div>
+                </div>
+            </div>
+{{/each}}

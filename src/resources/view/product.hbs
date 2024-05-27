@@ -1,0 +1,74 @@
+<label for="">Product name</label>
+<input type="text" name="" id="query">
+<button id="search">search</button>
+<h1 class="my-4">WooCommerce Products</h1>
+<table>
+
+</table>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#search').click(function() { 
+            let query = $("#query").val();
+            $.post("/products/search", { query: query }, function(data) {
+                let htmlContent = '';
+                data.forEach(function (d) {
+                    let img =  d.images.length === 0 ? '' : d.images[0].src
+                    htmlContent += `
+                        <div class="">
+                            <tr class="">
+                                <td><img width='70px' height='auto' src="${img}" alt=""></td>
+                                <td class="">
+                                    <h5 class="title">${d.name}</h5>
+                                    <p class="price">${d.price}</p>
+                                </td>
+                                <td>    
+                                    <label for="">Price</label>
+                                    <input type="text" name="" class="update_val">
+                                    <button class='update' prod-id="${d.id}">update</button>
+                                    
+                                </td>
+                                <td><button class='delete' del-id="${d.id}">Xóa</button> </td>
+                            </tr>
+                        </div>
+                    `;
+                });
+                $('table').html(htmlContent);
+            });
+        });
+        $(document).on('click', '.update',function () {
+            let newPrice = $(this).siblings('.update_val').val();
+            var ethis = $(this);
+            if (newPrice.length == 0) {
+                $(this).closest('td').append('<p style="color: red;">Vui lòng nhập giá mới</p>');
+            } else {
+                let id = $(this).attr('prod-id');
+                $.post(`/products/update`, {new_price: newPrice, id: id}, async function (result, statusCode) {
+                    if (statusCode == 'success') {
+                        console.log(1);
+                        ethis.parent().append('<p style="color: blue;">Cập nhật thành công</p>');
+                        ethis.closest('tr').find('.price').text(newPrice);
+                    } else {
+                        ethis.closest('td').append(`<p style="color: red;">${result}</p>`);
+                    }
+                })
+            }
+        })
+        $(document).on('click', '.delete',function () {
+            let id = $(this).attr('del-id');
+            var ethis = $(this);
+            $.post(`/products/delete`, { id: id}, async function (result, statusCode, error) {
+                console.log(statusCode, result);
+                if (result == 'success') {
+                    ethis.closest('tr').html('<p style="color: blue;">Xóa thành công</p>');
+                } else {
+                    ethis.closest('td').append(`<p style="color: red;">${result}</p>`);
+                }
+            })
+        })
+    })
+</script>
+
+
