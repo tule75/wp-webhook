@@ -36,6 +36,7 @@ class emailController {
                 products: products,
                 total_price: req.body.total,
             };
+            // console.log(data.bill.first_name)
             const browser = await puppeteer.launch({
                 headless:true,
                 args: [

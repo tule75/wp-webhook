@@ -12,7 +12,7 @@ const route = require('./routes/index');
 // app.use(helmet())
 
 app.use(cors());
-const hostname = '15.235.168.162';
+const hostname = process.env.HOST || '15.235.168.162';
 const port =  process.env.PORT || 3000
 app.use(express.static(path.join(__dirname, 'public')));
 
