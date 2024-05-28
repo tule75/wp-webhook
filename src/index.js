@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const { engine } = require('express-handlebars');
+require('dotenv').config();
 // const helmet = require('helmet');
 const app = express();
 
