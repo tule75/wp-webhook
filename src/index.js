@@ -12,6 +12,7 @@ const route = require('./routes/index');
 // app.use(helmet())
 
 app.use(cors());
+const hostname = '172.16.1.112';
 const port =  process.env.PORT || 3000
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -36,6 +37,6 @@ app.set('views', path.join(__dirname, 'resources/view'));
 
 route(app);
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+app.listen(port, hostname, () => {
+  console.log(`Example app listening on https://${hostname + ':' + port}`);
 });
