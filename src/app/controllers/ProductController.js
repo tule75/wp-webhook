@@ -37,7 +37,7 @@ exports.updateProducts = async (req, res) => {
     woo.updateProduct(id, {price: price, sale_price: price}).then(async (result) => {
         res.send('success')
     })
-    .catch(async (err) => {res.send(err.message)});;
+    .catch(async (err) => {console.log(err);res.send(err.message)});;
 }
 
 exports.cProduct = async (req, res) => { res.render('create_product')}
@@ -50,6 +50,7 @@ exports.createProduct = async (req, res) => {
         description: req.body.description
     }
     woo.createProduct(data).then(async (result) => {
-        res.send('success');
-    }).catch(err => {res.send(err.message)});
+        console.log(result)
+        res.json(result.data);
+    }).catch(err => {console.log(err);res.send(err.message)});
 }

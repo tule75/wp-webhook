@@ -3,9 +3,9 @@ const CUSTOMERS = 'customers', PRODUCTS = 'products', CATEGORIES = 'products/cat
 
 // initialize woocommerce
 const woo = new WooCommerceRestApi({
-    url: 'http://localhost/wp',
-    consumerKey: 'ck_5a7055788c8a3e314014a3e3041b1dacd3918c80',
-    consumerSecret: 'cs_af0aeb65aba8ccc5eeea6016147d6f6fc011497c',
+    url: 'https://www.donghouiters.id.vn',
+    consumerKey: process.env.KEY,
+    consumerSecret: process.env.SECRET,
     version: 'wc/v3',
     queryStringAuth: true
 });

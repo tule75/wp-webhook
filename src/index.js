@@ -37,6 +37,6 @@ app.set('views', path.join(__dirname, 'resources/view'));
 
 route(app);
 
-app.listen(port, hostname, () => {
+app.listen(port, () => {
   console.log(`Example app listening on https://${hostname + ':' + port}`);
 });
