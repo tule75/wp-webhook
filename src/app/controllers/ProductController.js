@@ -1,4 +1,4 @@
-const woo = require('../../config/woocommerce');
+const woo = require('../../utils/woocommerce');
 
 exports.index = async (req,res) => {res.render('product')};
 
