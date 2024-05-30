@@ -1,7 +1,7 @@
 const OpenAI = require('openai');
 
 const openai = new OpenAI({
-  apiKey: "sk-proj-6DAkQntcl70zCnMmvYTvT3BlbkFJGTN31awCKUJodHaBZYuN", 
+  apiKey: process.env.API_KEY, 
 });
 
 exports.chatWithGPT = async (query) => {
