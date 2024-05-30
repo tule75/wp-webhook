@@ -4,6 +4,7 @@ const moment = require('moment');
 const fs = require('fs-extra');
 const hbs = require('handlebars');
 const path = require('path');
+const WPtoLarkController = require('./WPtoLarkController');
 
 const transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -16,6 +17,7 @@ const transporter = nodemailer.createTransport({
 
 class emailController {
     async sendBill(req, res) {        
+        const result = WPtoLarkController.createOrder(req.body);
         const compile = async (data) => {
             const filePath = path.join(process.cwd(), './src/template', `index.hbs`);
             const html = await fs.readFile(filePath, 'utf8');

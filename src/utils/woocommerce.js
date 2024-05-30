@@ -1,5 +1,5 @@
 const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
-const CUSTOMERS = 'customers', PRODUCTS = 'products', CATEGORIES = 'products/categories';
+const CUSTOMERS = 'customers', PRODUCTS = 'products', CATEGORIES = 'products/categories', ORDERS = 'orders';
 
 // initialize woocommerce
 const woo = new WooCommerceRestApi({
@@ -11,6 +11,8 @@ const woo = new WooCommerceRestApi({
 });
 
 exports.getProducts = async (options = {}) => await woo.get(PRODUCTS, options);
+
+exports.createVariant = async (data = {},id) => await woo.post(`products/${id}/variations/batch`, data);
 
 exports.createProduct = async (data = {}) => await woo.post(PRODUCTS, data);
 
@@ -27,3 +29,5 @@ exports.getCategory = async () => await woo.get(CATEGORIES);
 exports.getCustomers = async () => await woo.get(CUSTOMERS);
 
 exports.createCustomer = async (data = {}) => await woo.post(CUSTOMERS, data);
+
+exports.updateOrder = async (id, data = {}) => await woo.put(`${ORDERS}/${id}`, data);
