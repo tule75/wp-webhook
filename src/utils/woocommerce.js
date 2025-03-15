@@ -1,9 +1,11 @@
 const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
-const CUSTOMERS = 'customers', PRODUCTS = 'products', CATEGORIES = 'products/categories', ORDERS = 'orders';
+const axios = require("axios");
+
+const CUSTOMERS = 'customers', PRODUCTS = 'products', CATEGORIES = 'products/categories', ORDERS = 'orders', POSTS = `/posts?consumer_key=${process.env.KEY}&consumer_secret=${process.env.SECRET}`;;
 
 // initialize woocommerce
 const woo = new WooCommerceRestApi({
-    url: 'https://www.donghouiters.id.vn',
+    url: 'https://webbanpod.topwebsite.vn',
     consumerKey: process.env.KEY,
     consumerSecret: process.env.SECRET,
     version: 'wc/v3',
@@ -31,3 +33,15 @@ exports.getCustomers = async () => await woo.get(CUSTOMERS);
 exports.createCustomer = async (data = {}) => await woo.post(CUSTOMERS, data);
 
 exports.updateOrder = async (id, data = {}) => await woo.put(`${ORDERS}/${id}`, data);
+const wordpressApi = axios.create({
+    baseURL: 'https://webbanpod.topwebsite.vn/wp-json/wp/v2',
+});
+exports.createPost = async (data = {}) => {
+    try {
+        const response = await wordpressApi.post(POSTS, data);
+        return response.data;
+    } catch (error) {
+        console.error("Error creating post:", error.response?.data || error.message);
+        throw error;
+    }
+};

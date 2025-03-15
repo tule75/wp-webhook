@@ -66,7 +66,7 @@ class emailController {
                 to: email ,// địa chỉ bên nhận
                 subject: 'Xác nhận quy trình',
                 text: 'Kính gửi quý khách hàng,' + '\n'
-                    + `Chúng tôi là cửa hàng giày bóng đá HL store. \n`
+                    + `Chúng tôi là cửa hàng CLODECO. \n`
                     + "Chúng tôi cảm ơn quý khách hàng vì đã quan tâm và ủng hộ sản phẩm của chúng tôi " + "\n"
                     + "\n"
                     + "Chúng tôi xin gửi ông/bà hóa đơn của đơn hàng này. \n"

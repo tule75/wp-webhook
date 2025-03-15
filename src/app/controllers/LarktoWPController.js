@@ -7,14 +7,17 @@ class LarktoWPController {
         try {
             const value = req.body;
             let cate_id = 0;
-            if (value.category == "Giày đá bóng trẻ em") {
-                cate_id = 31;
-            } else if (value.category == "Giày chạy bộ") {
-                cate_id = 32;
-            } else if (value.category == "Giày đá bóng sân cỏ tự nhiên") {
-                cate_id = 30;
-            } else {
-                cate_id = 28;
+            if (value.category == " T-shirts") {
+                cate_id = 263;
+            } else if (value.category == "mugs") {
+                cate_id = 265;
+            } else if (value.category == "Hoodies") {
+                cate_id = 264;
+            } else if (value.category == "Tote bags") {
+                cate_id = 266;
+            }
+            else {
+                cate_id = 15;
             }
             const attributes = value.size.split(',');
             const data = {
@@ -30,7 +33,7 @@ class LarktoWPController {
                 manage_stock: true,
                 stock_quantity: value.quantity,
             }
-    
+            if (value.images)
             await woo.createProduct(data)
             .then(async (response) => {
                 // console.log(response + "abcdấdsdfdágsdfggrt");
@@ -67,14 +70,17 @@ class LarktoWPController {
         try {
             const value = req.body;
             let cate_id = 0;
-            if (value.category == "Giày đá bóng trẻ em") {
-                cate_id = 31;
-            } else if (value.category == "Giày chạy bộ") {
-                cate_id = 32;
-            } else if (value.category == "Giày đá bóng sân cỏ tự nhiên") {
-                cate_id = 30;
-            } else {
-                cate_id = 28;
+            if (value.category == " T-shirts") {
+                cate_id = 263;
+            } else if (value.category == "mugs") {
+                cate_id = 265;
+            } else if (value.category == "Hoodies") {
+                cate_id = 264;
+            } else if (value.category == "Tote bags") {
+                cate_id = 266;
+            }
+            else {
+                cate_id = 15;
             }
             const attributes = value.Size.split(',');
             const data = {

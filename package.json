@@ -12,7 +12,7 @@
   "dependencies": {
     "@rimiti/facebook-automation": "^1.6.0",
     "@woocommerce/woocommerce-rest-api": "^1.0.1",
-    "axios": "^1.7.2",
+    "axios": "^1.7.9",
     "chromedriver": "^125.0.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -29,6 +29,7 @@
     "openai": "^4.0.0",
     "path": "^0.12.7",
     "puppeteer": "^22.10.0",
+    "request": "^2.88.2",
     "selenium-webdriver": "^4.21.0",
     "url": "^0.11.3"
   }

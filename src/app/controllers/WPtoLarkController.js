@@ -45,10 +45,9 @@ class WPtoLarkController {
                     'name': value.name,
                     permalink: value.permalink,
                     date_created: new Date(value.date_created).getTime(),
-                    price: parseInt(value.price),
+                    price: parseInt(value.price ?? 0),
                     category: value.categories[0] ? value.categories[0].name : '',
-                    images: value.images[0].src,
-                    Size: value.attributes[0].options,
+                    images: value.images[0]?.src ?? "",
                     description: value.description,
                     total_quantity: parseInt(value.stock_quantity),
                     sold_quantity: 0
@@ -80,9 +79,6 @@ class WPtoLarkController {
         let record_id = value.record_id;
         // console.log(value);
         let data
-        if (value.categories[0] === null || value.attributes[0] === null) {
-            return res.status(401).send('false request');
-        }
         try {
             if (value.regular_price == '') {
                 data = {
@@ -91,9 +87,7 @@ class WPtoLarkController {
                     'name': value.name,
                     permalink: value.permalink,
                     date_created: new Date(value.date_created).getTime(),
-                    category: value.categories[0].name,
                     images: value.images[0].src,
-                    Size: value.attributes[0].options,
                     description: value.description,
                     total_quantity: parseInt(value.stock_quantity),
                 }
@@ -105,10 +99,8 @@ class WPtoLarkController {
                     permalink: value.permalink,
                     date_created: new Date(value.date_created).getTime(),
                     price: parseInt(value.regular_price),
-                    category: value.categories[0] ? value.categories[0].name : '',
-                    images: value.images[0].src,
-                    Size: value.attributes[0].options,
-                    description: value.description,
+                    images: value.images[0]?.src ?? "",
+                    description: value.description ?? "",
                     total_quantity: parseInt(value.stock_quantity),
                 }
             }
@@ -170,12 +162,12 @@ class WPtoLarkController {
     }
 
     async createOrder(data) {
-        // console.log(data)
+        console.log(data)
         const value = 
             {
                 'ID': parseInt(data.id),
-                'Tên khách hàng': (data.billing.first_name ? data.billing.first_name : '') + ' ' + (data.billing.last_name ? data.billing.last_name : '' ),
-                'Địa chỉ': data.shipping.address_1 + ', ' + data.shipping.city + ', ' + data.shipping.state + ' ' + data.shipping.country,
+                'Tên khách hàng': (data.billing?.first_name ? data.billing?.first_name : '') + ' ' + (data.billing?.last_name ? data.billing?.last_name : '' ),
+                'Địa chỉ': data.shipping?.address_1 + ', ' + data.shipping?.city + ', ' + data.shipping?.state + ' ' + data.shipping?.country,
                 'Ngày tạo': new Date(data.date_created).getTime(),
                 'Tổng số tiền': parseInt(data.total),
                 'Trạng thái': data.status,
@@ -221,7 +213,7 @@ class WPtoLarkController {
                     await axios.post(`https://open.larksuite.com/open-apis/bitable/v1/apps/${app_token}/tables/${table_id}/records`, {
                         fields: {
                             "Mã đơn hàng": [data.data.data.record.id],
-                            "SKU": [sku_data.data.data.items[0].record_id],
+                            "SKU": [product.sku],
                             'Số lượng': parseInt(product.quantity)
                         }
                     }, {

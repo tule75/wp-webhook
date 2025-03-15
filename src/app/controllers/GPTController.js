@@ -12,7 +12,7 @@ class GPTController {
             }
             // console.log(value);
             const query = 'Từ bây giờ, tôi muốn đóng vai là 1 người chuyên gia về viết SEO và cũng là một chuyên gia am hiểu tường'
-                + ' tận về các sản phẩm giày đá bóng. Đoạn giới thiệu có khả năng leo thứ hạng SEO cao,' 
+                + ' tận về các sản phẩm quần áo. Đoạn giới thiệu có khả năng leo thứ hạng SEO cao,' 
                 + 'không lặp từ, lời văn giống con người 100%, lưu loát, có ngắt đoạn. \n Viết một đoạn mô tả "description" chuẩn SEO cho sản phẩm giày đá bóng có tên: '
                 + value.name + (value.categories != [] ? '. Và sản phẩm này thuộc loại: ' + value.categories[0].name : '') 
                 + (value.description != '' ? '. Sản phẩm này có đoạn mô tả ban đầu như sau: ' + value.description : '')

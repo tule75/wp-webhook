@@ -7,7 +7,7 @@ const openai = new OpenAI({
 exports.chatWithGPT = async (query) => {
   const chatCompletion = await openai.chat.completions.create({
     messages: [{ role: 'user', content: query }],
-    model: 'gpt-3.5-turbo',
+    model: 'gpt-4o-mini',
   });
   return chatCompletion.choices[0].message.content
 }

@@ -6,6 +6,7 @@ const AutomationController = require('../app/controllers/AutomationController.js
 
 router.post('/description',GPTController.generateDescription);
 router.post('/newVoucher', AutomationController.newVoucherBlog);
+router.post('/postFacebook', AutomationController.PostFacebook);
 
 // router.get('/', categoryController.index);
 
